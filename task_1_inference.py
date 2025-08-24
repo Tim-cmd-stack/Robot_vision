@@ -21,7 +21,7 @@ sys.path.insert(0, str(RAFT_DIR))
 from raft_stereo import RAFTStereo
 from utils.utils import InputPadder
 
-# Импортируем нужные классы из вашего кода
+# Импортируем нужные классы из кода
 from stereo_datasets import StereoDataset
 
 
@@ -42,7 +42,7 @@ class InStereo2KSample(StereoDataset):
         for folder in folders:
             left_path = folder / "left.png"
             right_path = folder / "right.png"
-            disp_path = folder / "left_disp.png"  # или "right_disp.png"
+            disp_path = folder / "left_disp.png"
 
             if left_path.exists() and right_path.exists():
                 self.image_list.append([str(left_path), str(right_path)])
