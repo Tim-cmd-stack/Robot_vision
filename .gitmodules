@@ -1,3 +1,6 @@
 [submodule "RAFT-Stereo"]
 	path = RAFT-Stereo
 	url = https://github.com/princeton-vl/RAFT-Stereo.git
+[submodule "BGNet"]
+	path = BGNet
+	url = https://github.com/3DCVdeveloper/BGNet
