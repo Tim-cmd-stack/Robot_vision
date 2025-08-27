@@ -1,5 +1,4 @@
 import torch
-import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 import os
@@ -21,7 +20,7 @@ sys.path.insert(0, str(RAFT_DIR))
 from raft_stereo import RAFTStereo
 from utils.utils import InputPadder
 
-# Импортируем нужные классы из вашего кода
+# Импорт классов из клонированного репозитория
 from stereo_datasets import StereoDataset
 
 
@@ -37,7 +36,6 @@ class InStereo2KSample(StereoDataset):
 
         self.image_list = []
         self.disparity_list = []
-        self.extra_info = []
 
         for folder in folders:
             left_path = folder / "left.png"
@@ -54,7 +52,7 @@ class InStereo2KSample(StereoDataset):
 
 # ================== Настройки ==================
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-DATA_DIR = r"C:\github_folders\robot_vision\dl-cv-home-test-master\data\instereo2k_sample"
+DATA_DIR = r"dl-cv-home-test-master\data\instereo2k_sample"
 OUT_DIR = "results/1st_task_disparity_instereo2k_sample"
 MODEL_PATH = "RAFT-Stereo/models/raftstereo-middlebury.pth"
 
@@ -128,8 +126,8 @@ def run_inference(model, left_img, right_img, iters=32):
     return disparity
 
 
-# ================== Визуализация и сохранение результатов ==================
-def visualize_disparity_colormap(disparity_map, save_name):
+# ================== Визуализация и сохранение результатов при необходимости==================
+'''def visualize_disparity_colormap(disparity_map, save_name):
     """Визуализация карты диспаритета"""
     print(f"Визуализация диспаритета для: {save_name}")
     print(f"Диапазон: {disparity_map.min():.4f} - {disparity_map.max():.4f}")
@@ -159,7 +157,7 @@ def visualize_disparity_colormap(disparity_map, save_name):
     #save_path = os.path.join(OUT_DIR, f"{save_name}_analysis.png")
     #plt.savefig(save_path, dpi=150, bbox_inches='tight')
     #plt.close()
-    #print(f"📊 Визуализация сохранена: {save_path}")
+    #print(f"📊 Визуализация сохранена: {save_path}")'''
 
 
 def save_disparity(disparity, save_name):
