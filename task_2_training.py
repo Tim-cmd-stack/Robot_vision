@@ -1,7 +1,10 @@
 import sys
 import os
 
-sys.path.append(r'C:\Users\CYBER ARTEL\PycharmProjects\robot_vision\BGNet')
+project_root = os.path.dirname(os.path.abspath(__file__))
+bgnet_path = os.path.join(project_root, 'BGNet')
+
+sys.path.insert(0, bgnet_path)
 
 import torch
 from torch.utils.tensorboard import SummaryWriter
@@ -378,3 +381,4 @@ if __name__ == "__main__":
         model_path=r'results\task_2_checkpoints_stereo\bgnet_model_epoch_40.pth',
         test_data_path=r'dl-cv-home-test-master\data\instereo2k_sample'
     )
+
