@@ -64,7 +64,7 @@ def train_stereo_depth():
         else:
             model.load_state_dict(checkpoint)
 
-        print(f"✅ Успешно загружены предобученные веса из {pretrained_path}")
+        print(f"Успешно загружены предобученные веса из {pretrained_path}")
 
     except Exception as e:
         print(f"Ошибка загрузки предобученных весов: {e}")
@@ -192,7 +192,7 @@ def train_stereo_depth():
                 'best_epoch': best_epoch
             }, os.path.join(save_dir, f'bgnet_model_best.pth'))
 
-            print(f"✅ Сохранена лучшая модель (эпоха {best_epoch})")
+            print(f"Сохранена лучшая модель (эпоха {best_epoch})")
 
         # Сохранение checkpoint
         if (epoch+1) % 10 == 0:
@@ -381,4 +381,5 @@ if __name__ == "__main__":
         model_path=r'results\task_2_checkpoints_stereo\bgnet_model_epoch_40.pth',
         test_data_path=r'dl-cv-home-test-master\data\instereo2k_sample'
     )
+
 
