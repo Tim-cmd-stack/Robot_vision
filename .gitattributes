@@ -1,1 +1,5 @@
 *.png filter=lfs diff=lfs merge=lfs -text
+results/1st_task_disparity_instereo2k_sample/*.png filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text
+*.pt filter=lfs diff=lfs merge=lfs -text
+results/** filter=lfs diff=lfs merge=lfs -text
