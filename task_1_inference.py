@@ -52,7 +52,7 @@ class InStereo2KSample(StereoDataset):
 
 # ================== Настройки ==================
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-DATA_DIR = r"dl-cv-home-test-master\data\instereo2k_sample"
+DATA_DIR = r"data\instereo2k_sample"
 OUT_DIR = "results/1st_task_disparity_instereo2k_sample"
 MODEL_PATH = "RAFT-Stereo/models/raftstereo-middlebury.pth"
 
