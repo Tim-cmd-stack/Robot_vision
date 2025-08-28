@@ -52,7 +52,7 @@ class InStereo2KSample(StereoDataset):
 
 # ================== Настройки ==================
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-DATA_DIR = r"dl-cv-home-test-master\data\instereo2k_sample"
+DATA_DIR = r"data\instereo2k_sample"
 OUT_DIR = "results/1st_task_disparity_instereo2k_sample"
 MODEL_PATH = "RAFT-Stereo/models/raftstereo-middlebury.pth"
 
@@ -92,9 +92,9 @@ def load_model():
             checkpoint = new_checkpoint
 
         model.load_state_dict(checkpoint, strict=False)
-        print("✅ Модель загружена")
+        print("Модель загружена")
     else:
-        print(f"❌ Файл модели не найден: {MODEL_PATH}")
+        print(f"Файл модели не найден: {MODEL_PATH}")
         return None
 
     model = model.to(DEVICE)
@@ -157,7 +157,7 @@ def run_inference(model, left_img, right_img, iters=32):
     #save_path = os.path.join(OUT_DIR, f"{save_name}_analysis.png")
     #plt.savefig(save_path, dpi=150, bbox_inches='tight')
     #plt.close()
-    #print(f"📊 Визуализация сохранена: {save_path}")'''
+    #print(f"Визуализация сохранена: {save_path}")'''
 
 
 def save_disparity(disparity, save_name):
@@ -166,7 +166,7 @@ def save_disparity(disparity, save_name):
     # Создаём папку, если её нет
     os.makedirs(OUT_DIR, exist_ok=True)
 
-    # 1. Сохраняем как .png с реальными значениями (KITTI-style)
+    # 1. Сохраняем как .png с реальными значениями
     disparity_uint16 = (disparity * 256).astype(np.uint16)
     cv2.imwrite(os.path.join(OUT_DIR, f"{save_name}.png"), disparity_uint16)
 
@@ -174,7 +174,7 @@ def save_disparity(disparity, save_name):
     #disp_vis = disp_vis.astype(np.uint8)
     #cv2.imwrite(os.path.join(OUT_DIR, f"{save_name}_vis.png"), disp_vis)
 
-    print(f"✅ Сохранено: {save_name} (.png)")
+    print(f"Сохранено: {save_name} (.png)")
 
 # ================== Основная функция ==================
 def main():
@@ -199,7 +199,7 @@ def main():
     print(f"Всего пар в датасете: {total_samples}")
 
     if total_samples == 0:
-        print("❌ Нет данных для обработки")
+        print("Нет данных для обработки")
         return
 
     # ================== Выбор индексов в зависимости от режима ==================
@@ -238,13 +238,13 @@ def main():
             successful += 1
 
         except Exception as e:
-            print(f"❌ Ошибка при обработке индекса {idx}: {e}")
+            print(f"Ошибка при обработке индекса {idx}: {e}")
             import traceback
             traceback.print_exc()
             failed += 1
             continue
 
-    print(f"\n✅ Инференс завершён!")
+    print(f"\nИнференс завершён!")
     print(f"   Успешно: {successful}")
     print(f"   Ошибок:  {failed}")
     print(f"   Результаты сохранены в: {OUT_DIR}")

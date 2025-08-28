@@ -49,6 +49,10 @@ conda activate raftstereo
 ```
 
 3. **Поместите данные датасета в нужную папку:**
-4. **Запустите инференс-скрипт:**
+4. **Для задачи 1 запустите инференс-скрипт:**
    ```bash
-   python inference_code/task_1_inference.py --mode all
+   python task_1_inference.py --mode all
+5. **Для задачи 2 запустите скрипт:**
+   ```bash
+   python task_2_training.py
+   

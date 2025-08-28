@@ -1,7 +1,10 @@
 import sys
 import os
 
-sys.path.append(r'C:\Users\CYBER ARTEL\PycharmProjects\robot_vision\BGNet')
+project_root = os.path.dirname(os.path.abspath(__file__))
+bgnet_path = os.path.join(project_root, 'BGNet')
+
+sys.path.insert(0, bgnet_path)
 
 import torch
 from torch.utils.tensorboard import SummaryWriter
@@ -30,8 +33,8 @@ def train_stereo_depth():
     # Создание датасета
     try:
         train_loader, val_loader = get_dataloaders(
-            stereo_root=r'C:\github_folders\robot_vision\dl-cv-home-test-master\data\instereo2k_sample',
-            teacher_depth_dir=r'C:\Users\CYBER ARTEL\PycharmProjects\robot_vision\results\1st_task_disparity_instereo2k_sample',
+            stereo_root=r'data\instereo2k_sample',
+            teacher_depth_dir=r'results\1st_task_disparity_instereo2k_sample',
             batch_size=batch_size,
             train_val_split=0.8,
             num_workers=4,
@@ -61,7 +64,7 @@ def train_stereo_depth():
         else:
             model.load_state_dict(checkpoint)
 
-        print(f"✅ Успешно загружены предобученные веса из {pretrained_path}")
+        print(f"Успешно загружены предобученные веса из {pretrained_path}")
 
     except Exception as e:
         print(f"Ошибка загрузки предобученных весов: {e}")
@@ -189,7 +192,7 @@ def train_stereo_depth():
                 'best_epoch': best_epoch
             }, os.path.join(save_dir, f'bgnet_model_best.pth'))
 
-            print(f"✅ Сохранена лучшая модель (эпоха {best_epoch})")
+            print(f"Сохранена лучшая модель (эпоха {best_epoch})")
 
         # Сохранение checkpoint
         if (epoch+1) % 10 == 0:
@@ -378,3 +381,6 @@ if __name__ == "__main__":
         model_path=r'results\task_2_checkpoints_stereo\bgnet_model_epoch_40.pth',
         test_data_path=r'dl-cv-home-test-master\data\instereo2k_sample'
     )
+
+
+
