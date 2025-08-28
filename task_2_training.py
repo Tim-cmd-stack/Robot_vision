@@ -33,8 +33,8 @@ def train_stereo_depth():
     # Создание датасета
     try:
         train_loader, val_loader = get_dataloaders(
-            stereo_root=r'C:\github_folders\robot_vision\dl-cv-home-test-master\data\instereo2k_sample',
-            teacher_depth_dir=r'C:\Users\CYBER ARTEL\PycharmProjects\robot_vision\results\1st_task_disparity_instereo2k_sample',
+            stereo_root=r'data\instereo2k_sample',
+            teacher_depth_dir=r'results\1st_task_disparity_instereo2k_sample',
             batch_size=batch_size,
             train_val_split=0.8,
             num_workers=4,
@@ -381,5 +381,6 @@ if __name__ == "__main__":
         model_path=r'results\task_2_checkpoints_stereo\bgnet_model_epoch_40.pth',
         test_data_path=r'dl-cv-home-test-master\data\instereo2k_sample'
     )
+
 
 
